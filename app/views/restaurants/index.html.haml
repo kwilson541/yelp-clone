@@ -2,6 +2,6 @@
   - @restaurants.each do |restaurant|
     %h2= restaurant.name
 - else
-  No restaurants yet
+  %h1 No restaurants yet
 
-%a(href='#') Add a restaurant
+%a(href='/restaurants/new') Add a restaurant
