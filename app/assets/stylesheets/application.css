@@ -27,6 +27,12 @@
    margin-top: 50px;
  }
 
+ .nav {
+   display: block;
+   float: right;
+   background-color: yellow;
+ }
+
  a {
    color: #66b2ff;
  }
