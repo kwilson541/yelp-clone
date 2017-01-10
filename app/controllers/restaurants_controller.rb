@@ -34,6 +34,7 @@ class RestaurantsController < ApplicationController
     redirect_to '/restaurants'
   end
 
+
   private
 
   def restaurant_params
