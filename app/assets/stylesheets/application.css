@@ -20,6 +20,7 @@
    text-align: center;
    margin: 20px;
    color: #ccced1;
+   text-shadow: 2px 1px 1px black;
  }
 
  div {
@@ -33,3 +34,39 @@
  a:hover {
    color: #b2d8ff;
  }
+
+input[type=text] {
+  padding: 5px;
+  margin: 3px;
+  border-radius: 5px;
+  background-color: #ffffe5;
+}
+
+label {
+  color: #66b2ff;
+}
+
+.button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 1px 1px 1px #66b2ff;
+  font-size: 0.8em;
+  color: #003366;
+}
+
+.add_link {
+  color: #cc5490;
+  font-size: 2em;
+}
+
+.add_link:hover {
+  color: #ffb4d9;
+}
+
+img {
+  margin: auto;
+  margin: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
