@@ -1,6 +1,9 @@
 require 'rails_helper'
 
-feature 'restaurants' do
+Rspec.feature 'restaurants', :type => :feature  do
+
+  include WebHelpers
+
   context 'no restaurants have been added' do
     scenario 'should display a prompt to add a restaurant' do
       visit '/restaurants'
@@ -83,20 +86,4 @@ feature 'restaurants' do
     end
   end
 
-end
-
-feature 'reviewing' do
-  # before { Restaurant.create name: 'KFC' }
-  let!(:kfc){Restaurant.create(name:'KFC') }
-
-  scenario 'allows users to leave a review using a form' do
-    visit '/restaurants'
-    click_link 'Review KFC'
-    fill_in "Thoughts", with: "so so"
-    select '3', from: 'Rating'
-    click_button 'Leave Review'
-    click_link 'KFC'
-    expect(current_path).to eq "/restaurants/#{kfc.id}"
-    expect(page).to have_content('so so')
-  end
 end
