@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.feature 'restaurants', :type => :feature  do
+RSpec.feature 'restaurants', :type => :feature  do
 
   include WebHelpers
 
@@ -25,8 +25,15 @@ Rspec.feature 'restaurants', :type => :feature  do
   end
 
   context 'creating restaurants' do
-    scenario 'prompts user to fill out a form, then displays the new restaurant' do
+
+    scenario 'user can\'t add a restaurant without signing up' do
       visit '/restaurants'
+      click_link 'Add a restaurant'
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    end
+
+    scenario 'prompts user to fill out a form, then displays the new restaurant' do
+      sign_up
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
       click_button 'Create Restaurant'
@@ -51,7 +58,7 @@ Rspec.feature 'restaurants', :type => :feature  do
 
     before { Restaurant.create name: 'KFC', description: 'Deep fried goodness', id: 1 }
     scenario 'let user edit a restaurant' do
-      visit '/restaurants'
+      sign_up
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       fill_in 'Description', with: 'Deep fried goodness'
@@ -68,7 +75,7 @@ Rspec.feature 'restaurants', :type => :feature  do
     before { Restaurant.create name: 'KFC', description: 'Deep fried goodness' }
 
     scenario 'removes the restaurant when a user clicks a delete link' do
-      visit '/restaurants'
+      sign_up
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
@@ -77,7 +84,7 @@ Rspec.feature 'restaurants', :type => :feature  do
 
   context 'an invalid restaurant' do
     scenario 'does not let you submit a name that is too short' do
-      visit '/restaurants'
+      sign_up
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'kf'
       click_button 'Create Restaurant'

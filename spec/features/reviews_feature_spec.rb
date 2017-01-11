@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.feature 'reviewing', :type => :feature  do
+RSpec.feature 'reviewing', :type => :feature  do
   include WebHelpers
   # before { Restaurant.create name: 'KFC' }
   let!(:kfc){Restaurant.create(name:'KFC') }
