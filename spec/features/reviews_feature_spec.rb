@@ -6,7 +6,7 @@ RSpec.feature 'reviewing', :type => :feature  do
   let!(:kfc){Restaurant.create(name:'KFC') }
 
   scenario 'allows users to leave a review using a form' do
-    sign_up
+    visit '/restaurants'
     click_link 'Review KFC'
     fill_in "Thoughts", with: "so so"
     select '3', from: 'Rating'
@@ -14,11 +14,5 @@ RSpec.feature 'reviewing', :type => :feature  do
     click_link 'KFC'
     expect(current_path).to eq "/restaurants/#{kfc.id}"
     expect(page).to have_content('so so')
-  end
-
-  scenario 'user can\'t add a review without signing up' do
-    visit '/restaurants'
-    click_link 'Review KFC'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 end
